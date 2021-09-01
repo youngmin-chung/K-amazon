@@ -1,0 +1,15 @@
+﻿@model ProductViewModel
+@{
+    ViewData["Title"] = "Index";
+}
+<h4>Items In Brand - @Model.BrandName</h4>
+<ul class="list-group col-sm-8 col-xs-12">
+    @{
+        foreach (Product item in Model.Products)
+        {
+            <li class="list-group-item">
+                @item.Description
+            </li>
+        }
+    }
+</ul>

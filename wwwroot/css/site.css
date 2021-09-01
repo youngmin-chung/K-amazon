@@ -1,0 +1,35 @@
+﻿.modalrow {
+    display: flex;
+}
+
+.columnL {
+    flex: 17%;
+    text-align: right;
+    padding-right: 2%;
+}
+
+.columnR {
+    flex: 83%;
+    text-align: left;
+    padding-left: 2%;
+}
+
+img.blur {
+    -webkit-filter: blur(4px);
+    filter: blur(4px);
+    filter: progid:DXImageTransform.Microsoft.Blur(PixelRadius='4');
+}
+
+.store-padding-10 {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+.googlemap {
+    height: 70%;
+    width: 100%;
+    margin-top: -90px;
+    min-height: 300px;
+}

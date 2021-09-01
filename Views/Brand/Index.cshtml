@@ -1,0 +1,101 @@
+﻿@model BrandViewModel
+@{
+    ViewData["Title"] = "Index";
+}
+<div class="flex-container">
+    <div class="w-100">
+        <div class="text-center">
+            <img src="~/images/store.png" style="opacity:.5;height:95px;width:115px;" />
+            <h3 class="text-dark text-center mt-5">Brands</h3>
+            <form asp-controller="Brand" asp-action="SelectBrand" method="post">
+                <select style="color:black;" asp-for="BrandId" asp-items="@Model.GetBrands()" class="form-group form-control" onchange="this.form.submit();">
+                    <option selected style="color:black; text-decoration-color:dimgray; display:none;">Select Brand</option>
+                </select>
+            </form>
+
+            @*@if (Context.Session.Get<ProductViewModel[]>("product") != null && Model.BrandId > 0)
+        {
+            ProductViewModel[] product = Context.Session.Get<ProductViewModel[]>("product");
+            <h5 class="mt-2">Products</h5>
+            <div class="row w-100 m-1" style="overflow-y:scroll;height:60vh;">
+                @foreach (ProductViewModel item in product)
+                {
+                    item.Description = item.Description.Contains("''") ?
+                    item.Description.Replace("''", "") : item.Description;
+                    var itemjson = JsonConvert.SerializeObject(item);
+                    var btn = "branbtn" + item.Id;
+                    <div id="item" class="col-sm-3 col-xs-12 text-center" style="padding: 10px; border:solid; border-color:darkslategrey">
+                        <img class="mt-2" src="~/images/@item.GNAME" style="height:95px;width:160px;" /><br />
+                        @if (item.Description.Length > 25)
+                        {
+                            <span class="m-0" style="font-size:large;font-weight:bold;">@item.PNAME</span>
+                        }
+                        else
+                        {
+                            <span style="font-size:large;font-weight:bold;">@item.Description</span>
+                        }
+                        <p>
+                            <span style="font-size:medium">Product info. in details</span>
+                        <p>
+                            <a id="@btn" href="#details_popup" data-toggle="modal" class="btn btn-outline-dark pt-2 pb-2" data-id="@item.Id" data-details="@itemjson">Details</a>
+                    </div>
+                }
+            </div>
+        }*@
+
+            <catalogue brand="@Model.BrandId"></catalogue>
+        </div>
+    </div>
+    <div class="modal" id="details_popup">
+        <div class="modal-dialog">
+            <div class="modal-content col-12">
+                <div class="modal-body">
+                    <button type="button" class="close" style="font-size:xx-large;" data-dismiss="modal">X</button>
+                    <div class="text-center">
+                        <img alt="" id="detailsGraphic" /><br />
+                        <h5 id="pname"></h5>
+                    </div>
+                    <form asp-controller="Brand" asp-action="SelectProduct" method="post" role="form">
+                        <div class="text-left col-sm-offset-2">
+                            <div class="modalrow">
+                                <div class="columnL">CPU</div>
+                                <div class="columnR" id="cpu"></div>
+                            </div>
+                            <div class="modalrow">
+                                <div class="columnL">GPU</div>
+                                <div class="columnR" id="gpu"></div>
+                            </div>
+                            <div class="modalrow">
+                                <div class="columnL">RAM</div>
+                                <div class="columnR" id="ram"></div>
+                            </div>
+                            <div class="modalrow">
+                                <div class="columnL">SSD</div>
+                                <div class="columnR" id="ssd"></div>
+                            </div>
+                            <div class="modalrow">
+                                <div class="columnL">PRICE</div>
+                                <div class="columnR" id="msrp"></div>
+                            </div>
+                            <div class="modalrow mb-4">
+                                <div class="columnL">Qty</div>
+                                <div class="columnR" id="cal">
+                                    <input asp-for="Qty" type="number" maxlength="3" size="3" style="width: 50px;" id="qty" />
+                                    <input asp-for="Id" type="hidden" id="selectedId" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="text-center">
+                            <button type="submit" class="btn-sm btn btn-warning">Add To Cart</button>
+                            <button type="submit" id="btnRemove" class="btn-sm btn btn-danger">Remove Item</button>
+                            <a href="/Order" class="btn btn-sm btn-success">View Cart</a>
+                        </div>
+                    </form>
+                </div>
+                <div class="m-2">
+                    <div class="text-center font-weight-bold" id="results"> @ViewBag.AddMessage</div>
+                </div>
+            </div><!--modal-content-->
+        </div><!--modal-dialog-->
+    </div><!--modal-->
+</div>

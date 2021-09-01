@@ -1,0 +1,107 @@
+﻿@model RegisterViewModel
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="text-center">
+    <h4>@ViewBag.Message</h4>
+</div>
+<!-- modal code -->
+<div class="modal" id="register_popup">
+    <div class="modal-dialog " style="padding-top:6em;">
+        <div class="modal-content">
+            <div class="modal-body">
+                <button type="button" class="close" style="font-size:xx-large;" data-dismiss="modal">X</button>
+                <div>
+                    <div class="text-center">
+                        <h4 class="pb-3">Please Register!</h4>
+                        <img src="~/images/register.png" id="registerGraphic" style="height:15%;width:15%;padding-bottom:5%;" /><br />
+                    </div>
+                    <form asp-controller="Register" asp-action="Register" method="post" class="form-horizontal" role="form" id="registerForm">
+                        <ul class="nav nav-tabs">
+                            <li class="active nav-item"><a class="nav-link " href="#personal" data-toggle="tab">Personal</a></li>
+                            <li class="nav-item"><a class="nav-link" href="#address" data-toggle="tab">Address</a></li>
+                            <li class="nav-item"><a class="nav-link" href="#account" data-toggle="tab">Account</a></li>
+                        </ul>
+                        <div class="tab-content">
+                            <div class="tab-pane active" id="personal">
+                                <div class="form-group">
+                                    <label asp-for="Firstname" class="text-left control-label pt-3 font-weight-bold"></label>
+                                    <input asp-for="Firstname" class="form-control" placeholder="First Name" />
+                                    <span asp-validation-for="Firstname" class="text-danger"></span>
+                                </div>
+                                <div class="form-group pt-3">
+                                    <label asp-for="Lastname" class="control-label font-weight-bold"></label>
+                                    <input asp-for="Lastname" class="form-control" placeholder="Last Name" />
+                                    <span asp-validation-for="Lastname" class="text-danger"></span>
+                                </div>
+                                <div class="form-group pt-3">
+                                    <label asp-for="Age" class="control-label font-weight-bold"></label>
+                                    <input asp-for="Age" class="form-control" placeholder="Age" />
+                                    <span asp-validation-for="Age" class="text-danger"></span>
+                                </div>
+                                <div class="form-group pt-3">
+                                    <label asp-for="CreditcardType" class="control-label font-weight-bold"></label>
+                                    <input asp-for="CreditcardType" class="form-control" placeholder="CreditcardType" />
+                                    <span asp-validation-for="CreditcardType" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="tab-pane" id="address">
+                                <div class="form-group pt-3">
+                                    <label asp-for="Address1" class="control-label font-weight-bold"></label>
+                                    <input asp-for="Address1" class="form-control" placeholder="Enter Address" />
+                                    <span asp-validation-for="Address1" class="text-danger"></span>
+                                </div>
+                                <div class="form-group">
+                                    <label asp-for="City" class="control-label font-weight-bold"></label>
+                                    <input asp-for="City" class="form-control" placeholder="Enter City" />
+                                    <span asp-validation-for="City" class="text-danger"></span>
+                                </div>
+                                <div class="form-group">
+                                    <label asp-for="Country" class="control-label font-weight-bold"></label>
+                                    <input asp-for="Country" class="form-control" placeholder="Enter Country" />
+                                    <span asp-validation-for="Country" class="text-danger"></span>
+                                </div>
+                                <div class="form-group">
+                                    <label asp-for="Region" class="control-label font-weight-bold"></label>
+                                    <input asp-for="Region" class="form-control" placeholder="Enter Region" />
+                                    <span asp-validation-for="Region" class="text-danger"></span>
+                                </div>
+                                <div class="form-group">
+                                    <label asp-for="Mailcode" class="control-label font-weight-bold"></label>
+                                    <input asp-for="Mailcode" class="form-control" placeholder="Enter Mailcode" />
+                                    <span asp-validation-for="Mailcode" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="tab-pane" id="account">
+                                <div class="form-group pt-5">
+                                    <label asp-for="Email" class="control-label font-weight-bold"></label>
+                                    <input asp-for="Email" type="email" class="form-control" placeholder="Enter valid Email" />
+                                    <span asp-validation-for="Email" class="text-danger"></span>
+                                </div>
+                                <div class="form-group">
+                                    <label asp-for="Password" class="control-label font-weight-bold"></label>
+                                    <input asp-for="Password" type="password" class="form-control" placeholder="Enter password" />
+                                    <span asp-validation-for="Password" class="text-danger"></span>
+                                </div>
+                                <div class="form-group">
+                                    <label asp-for="RepeatPassword" class="control-label font-weight-bold">Repeat PW</label>
+                                    <input asp-for="RepeatPassword" type="password" class="form-control" placeholder="Enter same password" />
+                                    <span asp-validation-for="RepeatPassword" class="text-danger"></span>
+                                </div>
+                                <div class="form-group text-center">
+                                    <button type="submit" class="btn btn-default">
+                                        Register
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer" id="footer">
+                    <h4 class="alert-danger">@ViewBag.Message</h4>
+                </div><!-- modal-footer-->
+            </div><!--modal-body-->
+        </div><!--modal-content-->
+    </div> <!-- modal dialog-->
+</div><!--modal-->

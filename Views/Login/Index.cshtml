@@ -1,0 +1,47 @@
+﻿@model LoginViewModel
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h4 class="text-center">@ViewBag.Status</h4>
+<div class="modal" id="login_popup" data-backdrop="static">
+    <div class="modal-dialog" style="padding-top:6em;">
+        <div class="modal-content">
+            <div class="modal-body">
+                <button type="button" class="close" style="font-size:xx-large;" data-dismiss="modal">X</button>
+                <div class="text-center">
+                    <h4 class="pb-3">Please Login!</h4>
+                    <img src="~/images/login.png" id="registerGraphic" style="height:15%;width:15%;padding-bottom:5%;" /><br />
+                </div>
+                <section>
+                    <form asp-controller="Login" asp-action="Login" asp-route-returnurl="@ViewBag.ReturnUrl" method="post" class="form-horizontal" role="form">
+                        <div class="form-group ml-2 mt-2">
+                            <label asp-for="Email" class="col-4 control-label">Email:</label>
+                            <div class="col-7">
+                                <input asp-for="Email" class="form-control" />
+                                <span asp-validation-for="Email" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="form-group ml-2">
+                            <label asp-for="Password" class="col-4 control-label">Password:</label>
+                            <div class="col-7">
+                                <input asp-for="Password" class="form-control" />
+                                <span asp-validation-for="Password" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="form-group text-center">
+                            <div class="text-center mt-3">
+                                <button type="submit" class="btn btn-default btn-outline-dark text-center">
+                                    Login
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </section>
+                <div class="text-center">
+                    @ViewBag.Message
+                </div>
+            </div> <!-- modal body -->
+        </div><!--modal-content-->
+    </div><!--modal-dialog-->
+</div><!--modal-->
