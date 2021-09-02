@@ -1,0 +1,92 @@
+﻿@{
+ViewData["Title"] = "List";
+Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<link href="~/css/vuemodal.css" rel="stylesheet" />
+<div id="orders">
+    <div class="mt-5">
+        <div class="card">
+            <div class="card-title text-center mt-3">
+                <h3>Orders You've Ordered</h3>
+            </div>
+            <div class="card-body">
+                <table class="table table-bordered table-striped">
+                    <thead>
+                        <tr>
+                            <th class="text-center">ID</th>
+                            <th class="text-center">Date</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr herf="#" v-for="order in orders" v-on:click="orderForModal=order;loadAndShowModal();">
+                            <td>{{order.id}}</td>
+                            <td>{{formatDate(order.orderDate)}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <modal v-if="showModal" v-on:close="showModal = false" :order="orderForModal" :details="detailsForModal"></modal>
+    </div>
+</div>
+<script src="~/js/orderlist.js"></script>
+<!-- template for the modal component -->
+<script type="text/x-template" id="modal-template">
+    <transition name="modal">
+        <div class="modal-mask">
+            <div class="modal-wrapper">
+                <div class="modal-container">
+                    <button type="button" class="close" style="font-size:xx-large;" v-on:click="$emit('close')">
+                        X
+                    </button>
+                    <p></p><br />
+                    <div style="font-size:larger; width: 100%;">
+                        <label class="col-xs-4 control-label font-weight-bold text-left">Order:{{order.id}}</label>
+                        <label class="col-xs-4 control-label font-weight-bold text-right" style="padding-left:490px;">{{formatDate(order.orderDate)}}</label>
+                        
+                        <p></p>
+                        <div class="text-center">
+                            <img src="../images/cart.png" style="height:60px;width:60px;margin:10px;" />
+                        </div>
+                        <div class="modal-body" style="padding:5px;">
+                            <ul class="list-group vuerow">
+                                <li class="list-group-item vuerow" style="background-color:lightgray; font-weight:bolder;">
+                                    <span class="vuecol80 text-left">Product</span>
+                                    <span class="vuecol20 text-center">MSRP</span>
+                                    <span class="vuecol20 text-center">QtyS</span>
+                                    <span class="vuecol20 text-center">QtyO</span>
+                                    <span class="vuecol20 text-center">QtyB</span>
+                                    <span class="vuecol20 text-right">Extended</span>
+                                </li>
+                                <li v-for="detail in details" class="list-group-item vuerow">
+                                    <span class="vuecol80 text-left">{{detail.productName}}</span>
+                                    <span class="vuecol20 text-right">{{detail.msrp | toCurrency}}</span>
+                                    <span class="vuecol20 text-center">{{detail.qtySold}}</span>
+                                    <span class="vuecol20 text-center">{{detail.qtyOrdered}}</span>
+                                    <span class="vuecol20 text-center">{{detail.qtyBackOrdered}}</span>
+                                    <span class="vuecol20 text-right">{{detail.orderAmount | toCurrency}}</span>
+                                </li>
+                            </ul>
+
+                            <div class="text-right">
+                                <div class="vuerow">
+                                    <span class="vuecol80 font-weight-bold ">Sub:</span>
+                                    <span class="vuecol20 pr-2">{{calcSub() | toCurrency}}</span>
+                                </div>
+                                <div class="vuerow">
+                                    <span class="vuecol80 font-weight-bold ">Tax:</span>
+                                    <span class="vuecol20 pr-2">{{calcTax(calcSub()) | toCurrency}}</span>
+                                </div>
+                                <div class="vuerow">
+                                    <span class="vuecol80 font-weight-bold ">Order Total:</span>
+                                    <span class="vuecol20 pr-2">{{calcTotal() | toCurrency}}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </transition>
+</script>
