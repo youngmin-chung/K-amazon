@@ -21,11 +21,9 @@
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light text-dark bg-info border-bottom box-shadow mb-3">
             <span>
-                <a class="navbar-brand text-light text-xl-center" asp-area="" asp-controller="Home" asp-action="Index">Young's Laptop World</a>
+                <a class="navbar-brand text-light text-xl-center" asp-area="" asp-controller="Home" asp-action="Index">K-amazon</a>
             </span>
-            <span class="text-right text-light font-weight-bold">
-                @Context.Session.GetString(SessionVariables.LoginStatus)
-            </span>
+
             <button class="navbar-toggler float-right navbar-dark" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon float-right"></span>
             </button>
@@ -36,8 +34,8 @@
                             <a class="nav-link text-light font-weight-bold" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                         </li>
                         <li class="nav-item">
-                                <a class="nav-link text-light font-weight-bold" asp-area="" asp-controller="Data" asp-action="Index">Data Utils</a>
-                            </li>
+                            <a class="nav-link text-light font-weight-bold" asp-area="" asp-controller="Data" asp-action="Index">Data Utils</a>
+                        </li>
                         <li>
                             <a class="nav-link text-light text-lg-center font-weight-bold" asp-area="" asp-controller="Brand" asp-action="Index">Brands</a>
                         </li>
@@ -59,6 +57,9 @@
                     </ul>
                 </div>
             </div>
+            <span class="text-right text-light font-weight-bold">
+                @Context.Session.GetString(SessionVariables.LoginStatus)
+            </span>
         </nav>
     </header>
 
@@ -70,7 +71,7 @@
 
     <footer class="footer">
         <div class="border-top container text-muted bg-white" style="position: fixed; left: 0; right:0; bottom: 0; width:100%; text-align:center; ">
-            &copy; 2019 - Casestudy
+            &copy; 2021 - K-amazon
         </div>
     </footer>
     <environment include="Development">
