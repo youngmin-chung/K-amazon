@@ -12,16 +12,13 @@ In order to get started with this project, you will need to run it on Visusal St
 What you need to install:
 
 __Front-end:__
-- To be updated...,
-
-__Front-end development dependencies:__
-- To be updated...,
+- Based on Razor Page /w Jquary, Bootstrap 4
+- Vue.js
+- Google Map API
 
 __Back-end:__
-- To be updated...,
-
-__Back-end development dependencies:__
-- To be updated...,
+- ASP .NET CORE 5 /w MVC
+- MS SQL
 
 ### Installing
 
