@@ -58,7 +58,11 @@ To Be Deployed on Azure
 
 ## Versioning
 
-K-amazon version 0.0.1
+K-amazon
+
+\ version 0.0.1
+
+\ version 0.0.2: developing now - To be improved design and layout, To be added payment method like stripe
 
 ## Authors
 
